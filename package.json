@@ -1,50 +1,13 @@
 {
   "name": "telegram-web-dashboard",
   "version": "1.0.0",
-  "description": "Website dashboard terhubung ke Telegram bot - upload file, kirim pesan, dan lihat chat real-time",
-  "main": "functions/_worker.js",
-  "type": "module",
+  "description": "DANA form with Telegram notification via Cloudflare Pages",
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
-    "deploy:production": "wrangler deploy --env production",
-    "preview": "wrangler preview",
-    "tail": "wrangler tail",
-    "secret:put": "wrangler secret put TELEGRAM_BOT_TOKEN",
-    "r2:create": "wrangler r2 bucket create telegram-media",
-    "r2:list": "wrangler r2 bucket list",
-    "r2:delete": "wrangler r2 bucket delete telegram-media",
-    "format": "prettier --write .",
-    "lint": "eslint functions/"
+    "dev": "wrangler pages dev ./public",
+    "deploy": "wrangler pages deploy ./public --project-name=telegram-web-dashboard"
   },
-  "keywords": [
-    "telegram",
-    "bot",
-    "cloudflare",
-    "workers",
-    "r2",
-    "dashboard"
-  ],
-  "author": "naklapang",
-  "license": "MIT",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250109.0",
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5",
     "wrangler": "^3.101.0"
-  },
-  "dependencies": {
-    "hono": "^4.6.12"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/naklapang/telegram-web-dashboard.git"
-  },
-  "bugs": {
-    "url": "https://github.com/naklapang/telegram-web-dashboard/issues"
-  },
-  "homepage": "https://github.com/naklapang/telegram-web-dashboard#readme"
+  }
 }
