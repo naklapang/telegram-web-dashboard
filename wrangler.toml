@@ -1,1 +1,53 @@
+# wrangler.toml
+# Konfigurasi untuk Cloudflare Worker Telegram Bot Dashboard
+# Token disimpan di Cloudflare Dashboard (Settings → Variables) untuk keamanan
 
+name = "telegram-web-dashboard"
+main = "functions/_worker.js"
+compatibility_date = "2025-01-09"
+
+# ==========================================
+# R2 BUCKET CONFIGURATION
+# ==========================================
+[[r2_buckets]]
+binding = "MY_BUCKET"
+bucket_name = "telegram-media"
+
+# ==========================================
+# PRODUCTION CONFIGURATION
+# ==========================================
+[env.production]
+# Token dikosongkan, nanti diisi lewat Dashboard Cloudflare
+vars = { TELEGRAM_BOT_TOKEN = "" }
+
+# ==========================================
+# DEVELOPMENT CONFIGURATION (Local)
+# ==========================================
+[env.dev]
+# Untuk development lokal, buat file .dev.vars (jangan commit ke git)
+vars = { TELEGRAM_BOT_TOKEN = "" }
+
+# ==========================================
+# PERFORMANCE & OPTIMIZATION
+# ==========================================
+[minify]
+javascript = true
+html = true
+css = true
+
+# ==========================================
+# LOGGING & OBSERVABILITY
+# ==========================================
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[logging]
+enabled = true
+level = "info"
+
+# ==========================================
+# DEPLOY CONFIGURATION
+# ==========================================
+usage_model = "bundled"
+node_compat = true
